@@ -13,8 +13,8 @@ fields:[
         name:"slug",
         title:"Slug",
         type:"slug",
-        option:{
-            source:"name",
+        options:{
+          source:"name",
             maxLength:96,
         }
     },
@@ -72,9 +72,44 @@ fields:[
                         }
                     }
 
-                ]
+                ],
+
+                preview:{
+                    select:{
+                        title:"ingredient.name",
+                        name:"ingredient.name",
+                        media:"ingredient.image",
+                        wholeNumber:"wholeNumber",
+                        fraction:"fraction",
+                        unit:"unit"
+                    },
+
+                    prepare({
+                        title,
+                        subtitle,
+                        media,
+                        wholeNumber="(No whole number set)",
+                        fraction ="(no fraaction set)",
+                        unit= "(no unit set)"
+                    }){
+                        return {
+                            title,
+                            subtitle:`${wholeNumber} ${fraction} ${unit}`,
+                            media
+
+
+                        }
+                    }
+                }
             }
         ]
+    },
+    {
+        name:"instructions",
+        title:"Instructions",
+        type:"array",
+        of:[{ type: "block"}]
+        
     }
  
     ]
