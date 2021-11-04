@@ -28,7 +28,7 @@ export default function Home({recipes}) {
           recipes.map((recipe) => (
             
             <li key={recipe._id} className="recipe-card">
-              <Link href="/">
+              <Link href={`/recipes/${recipe.slug.current}`}>
                 <a href="/">
                 <img src={urlFor(recipe.mainImage).url()} alt={recipe.name} />
                   <span>{recipe.name}</span>
