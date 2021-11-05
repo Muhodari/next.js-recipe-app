@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import
 { 
@@ -29,6 +30,11 @@ likes
 }`;
 
 export default function oneRecipe({data ,preview }){
+
+    const router = useRouter();
+    if(router.isFallback){
+        return <div>Loading....</div>;
+    }
 
    const {data:recipe} = usePreviewSubscription(recipeQuery,{
        params:{ slug: data.recipe?.slug.current },
